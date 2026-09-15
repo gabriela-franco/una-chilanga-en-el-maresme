@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Divisor from '../../components/Divisor.astro';
+import FlorSimbolo from '../../components/FlorSimbolo.astro';
+---
+<BaseLayout title="¡Gracias!" description="Gracias por compartir tu anuncio con la tribu.">
+  <section style="text-align:center; padding: 3rem 0;">
+    <div class="hero-decor">
+      <FlorSimbolo color="#f4b6c2" />
+    </div>
+    <h1>¡Gracias por compartir!</h1>
+    <p style="color: var(--texto-suave); max-width: 480px; margin: 0 auto 1.6rem;">
+      Recibimos tu anuncio. Lo vamos a revisar y, si todo va bien, pronto aparecerá en la
+      página de <a href="/comunidad">Comunidad</a>.
+    </p>
+    <a class="boton" href="/comunidad">Volver a Comunidad</a>
+  </section>
+</BaseLayout>

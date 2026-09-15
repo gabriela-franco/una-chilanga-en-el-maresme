@@ -1,0 +1,42 @@
+---
+import FlorSimbolo from './FlorSimbolo.astro';
+
+const categorias: Record<string, string> = {
+  duelo: "Duelo",
+  migracion: "Migración",
+  maternidad: "Maternidad",
+  "salud-emocional": "Salud emocional",
+  viajes: "Viajes",
+  cocina: "Cocinando ando...",
+  "un-rato-conmigo": "Un rato conmigo",
+};
+
+const coloresPorCategoria: Record<string, string> = {
+  duelo: "#cbb8e8",
+  migracion: "#f4b6c2",
+  maternidad: "#a8dfc9",
+  "salud-emocional": "#f7c98e",
+  viajes: "#9fc9e8",
+  cocina: "#d9a9e8",
+  "un-rato-conmigo": "#f4b6c2",
+};
+
+interface Props {
+  slug: string;
+  title: string;
+  description: string;
+  pubDate: Date;
+  category: string;
+}
+
+const { slug, title, description, pubDate, category } = Astro.props;
+---
+<a class="tarjeta" href={`/blog/${slug}`}>
+  <FlorSimbolo color={coloresPorCategoria[category] ?? "#f4b6c2"} />
+  <span class="categoria-tag" data-cat={category}>{categorias[category] ?? category}</span>
+  <h3>{title}</h3>
+  <p>{description}</p>
+  <span class="fecha">
+    {pubDate.toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" })}
+  </span>
+</a>

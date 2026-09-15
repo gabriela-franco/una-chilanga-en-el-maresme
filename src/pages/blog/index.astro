@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TarjetaPost from '../../components/TarjetaPost.astro';
+
+const categorias: Record<string, string> = {
+  duelo: "Duelo",
+  migracion: "Migración",
+  maternidad: "Maternidad",
+  "salud-emocional": "Salud emocional",
+  viajes: "Viajes",
+  cocina: "Cocinando ando...",
+  "un-rato-conmigo": "Un rato conmigo",
+};
+
+const categoriaActiva = Astro.url.searchParams.get('categoria');
+
+const todos = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const posts = categoriaActiva
+  ? todos.filter((p) => p.data.category === categoriaActiva)
+  : todos;
+---
+<BaseLayout title="Blog">
+  <section>
+    <p style="text-align:center; color: var(--texto-suave);">
+      Filtra por tema o recorre todos los posts.
+    </p>
+
+    <div class="filtros">
+      <a href="/blog" class={!categoriaActiva ? 'activo' : ''}>Todos</a>
+      {Object.entries(categorias).map(([clave, nombre]) => (
+        <a href={`/blog?categoria=${clave}`} class={categoriaActiva === clave ? 'activo' : ''}>
+          {nombre}
+        </a>
+      ))}
+    </div>
+
+    {posts.length === 0 ? (
+      <p style="text-align:center; margin-top: 2rem; color: var(--texto-suave);">
+        Aún no hay posts publicados en esta categoría.
+      </p>
+    ) : (
+      <div class="grid-posts">
+        {posts.map((post) => (
+          <TarjetaPost
+            slug={post.id}
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            category={post.data.category}
+          />
+        ))}
+      </div>
+    )}
+  </section>
+</BaseLayout>

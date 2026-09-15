@@ -1,0 +1,471 @@
+/* ---------- Paleta floral pastel ---------- */
+:root {
+  --rosa: #f4b6c2;
+  --rosa-suave: #fbe2e7;
+  --lila: #cbb8e8;
+  --lila-suave: #ece3f9;
+  --menta: #a8dfc9;
+  --menta-suave: #e2f5ec;
+  --crema: #fffaf4;
+  --texto: #4a3b47;
+  --texto-suave: #776873;
+  --blanco: #ffffff;
+
+  --font-titulo: 'Playfair Display', Georgia, serif;
+  --font-cuerpo: 'Quicksand', system-ui, sans-serif;
+  --font-acento: 'Caveat', cursive;
+
+  --radio: 22px;
+  --sombra: 0 10px 30px -12px rgba(74, 59, 71, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-cuerpo);
+  color: var(--texto);
+  background-color: var(--crema);
+  background-image:
+    radial-gradient(circle at 8% 12%, var(--rosa-suave) 0%, transparent 40%),
+    radial-gradient(circle at 92% 18%, var(--lila-suave) 0%, transparent 42%),
+    radial-gradient(circle at 15% 90%, var(--menta-suave) 0%, transparent 40%);
+  background-attachment: fixed;
+  line-height: 1.65;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-titulo);
+  color: var(--texto);
+  line-height: 1.25;
+  margin: 0 0 0.5em;
+}
+
+a {
+  color: inherit;
+}
+
+.contenedor {
+  width: min(1000px, 92%);
+  margin: 0 auto;
+}
+
+/* ---------- Header ---------- */
+.header {
+  padding: 1.6rem 0 1rem;
+}
+
+.header .contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-titulo);
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: var(--texto);
+}
+
+.logo svg {
+  width: 34px;
+  height: 34px;
+}
+
+.nav {
+  display: flex;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  transition: background-color 0.2s ease;
+}
+
+.nav a:hover {
+  background-color: var(--rosa-suave);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  text-align: center;
+  padding: 3rem 0 2rem;
+  position: relative;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+}
+
+.hero .acento {
+  font-family: var(--font-acento);
+  font-size: 1.6em;
+  color: var(--rosa);
+}
+
+.hero p {
+  max-width: 620px;
+  margin: 0 auto;
+  color: var(--texto-suave);
+  font-size: 1.15rem;
+}
+
+.hero-decor {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 1.4rem 0;
+}
+
+.hero-decor svg {
+  width: 40px;
+  height: 40px;
+}
+
+/* ---------- Hero / banner ---------- */
+.hero-split {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  padding: 3rem 0 2rem;
+}
+
+.hero-texto h1 {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+}
+
+.hero-texto .acento {
+  font-family: var(--font-acento);
+  font-size: 1.6em;
+  color: var(--rosa);
+}
+
+.hero-texto p {
+  max-width: 460px;
+  color: var(--texto-suave);
+  font-size: 1.1rem;
+}
+
+.hero-foto {
+  position: relative;
+  justify-self: center;
+}
+
+.hero-foto img {
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  display: block;
+}
+
+.hero-foto .flor-simbolo {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  width: 96px;
+  height: 96px;
+  filter: drop-shadow(0 4px 10px rgba(74, 59, 71, 0.25));
+}
+
+@media (max-width: 780px) {
+  .hero-split {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-texto p {
+    margin: 0 auto;
+  }
+  .hero-foto {
+    order: -1;
+  }
+}
+
+/* ---------- Divisor floral ---------- */
+.divisor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  margin: 2.6rem 0;
+  color: var(--lila);
+}
+
+.divisor svg {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.divisor .linea {
+  height: 1px;
+  width: 60px;
+  background: linear-gradient(90deg, transparent, currentColor, transparent);
+}
+
+/* ---------- Tarjetas de post ---------- */
+.grid-posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.6rem;
+  margin: 2rem 0 3rem;
+}
+
+.tarjeta {
+  position: relative;
+  overflow: hidden;
+  background: var(--blanco);
+  border-radius: var(--radio);
+  padding: 1.6rem;
+  box-shadow: var(--sombra);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px solid rgba(203, 184, 232, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tarjeta .flor-simbolo {
+  position: absolute;
+  top: -10px;
+  right: -6px;
+  width: 88px;
+  height: 88px;
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+.tarjeta > :not(.flor-simbolo) {
+  position: relative;
+  z-index: 1;
+}
+
+.tarjeta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px -14px rgba(74, 59, 71, 0.32);
+}
+
+.categoria-tag {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: var(--menta-suave);
+  color: #2f6b52;
+}
+
+.categoria-tag[data-cat="duelo"] { background: var(--lila-suave); color: #5b3f8f; }
+.categoria-tag[data-cat="migracion"] { background: var(--rosa-suave); color: #a5415a; }
+.categoria-tag[data-cat="maternidad"] { background: var(--menta-suave); color: #2f6b52; }
+.categoria-tag[data-cat="salud-emocional"] { background: #fde7d2; color: #a55a1c; }
+.categoria-tag[data-cat="viajes"] { background: #dceefd; color: #2a6b96; }
+.categoria-tag[data-cat="cocina"] { background: #f3e6fb; color: #7a3f9c; }
+.categoria-tag[data-cat="un-rato-conmigo"] { background: var(--rosa-suave); color: #a5415a; }
+
+.tarjeta h3 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.tarjeta p {
+  color: var(--texto-suave);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.tarjeta .fecha {
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+  opacity: 0.8;
+}
+
+/* ---------- Filtros de categoría ---------- */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin: 1.6rem 0 0.5rem;
+}
+
+.filtros a {
+  text-decoration: none;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: var(--blanco);
+  border: 1px solid var(--lila-suave);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.filtros a.activo,
+.filtros a:hover {
+  background: var(--rosa);
+  color: var(--blanco);
+  border-color: var(--rosa);
+}
+
+/* ---------- Artículo individual ---------- */
+.articulo {
+  background: var(--blanco);
+  border-radius: var(--radio);
+  padding: clamp(1.6rem, 5vw, 3rem);
+  box-shadow: var(--sombra);
+  margin-bottom: 3rem;
+}
+
+.articulo h1 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.articulo .meta {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+  margin-bottom: 1.6rem;
+}
+
+.articulo :is(p, li) {
+  font-size: 1.05rem;
+}
+
+.articulo h2 {
+  margin-top: 1.8rem;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  text-align: center;
+  padding: 2.5rem 0 3rem;
+  color: var(--texto-suave);
+}
+
+.footer .flores {
+  display: flex;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.footer .flores .flor-simbolo {
+  width: 42px;
+  height: 42px;
+}
+
+/* ---------- Utilidades ---------- */
+.boton {
+  display: inline-block;
+  background: var(--rosa);
+  color: var(--blanco);
+  padding: 0.7rem 1.6rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: var(--sombra);
+}
+
+.boton:hover {
+  background: #ef9fb0;
+}
+
+.seccion-titulo {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- Comunidad ---------- */
+.grid-comunidad {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.6rem;
+  margin: 2rem 0 3rem;
+}
+
+.tarjeta-comunidad {
+  align-items: flex-start;
+}
+
+.tarjeta-comunidad .que-hace {
+  font-weight: 700;
+  color: var(--texto);
+}
+
+.boton-chico {
+  padding: 0.45rem 1.1rem;
+  font-size: 0.9rem;
+  box-shadow: none;
+}
+
+.formulario-comunidad {
+  margin-bottom: 3rem;
+}
+
+.form-tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-width: 560px;
+  margin: 0 auto;
+  background: var(--blanco);
+  border-radius: var(--radio);
+  padding: clamp(1.6rem, 5vw, 2.4rem);
+  box-shadow: var(--sombra);
+}
+
+.form-tarjeta label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-top: 0.6rem;
+}
+
+.form-tarjeta input,
+.form-tarjeta textarea {
+  font-family: var(--font-cuerpo);
+  font-size: 1rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--lila-suave);
+  border-radius: 12px;
+  background: var(--crema);
+  color: var(--texto);
+}
+
+.form-tarjeta input:focus,
+.form-tarjeta textarea:focus {
+  outline: 2px solid var(--rosa);
+  outline-offset: 1px;
+}
+
+.form-tarjeta button {
+  margin-top: 1.2rem;
+  align-self: center;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-cuerpo);
+}
+
+.form-tarjeta .oculto {
+  position: absolute;
+  left: -9999px;
+}

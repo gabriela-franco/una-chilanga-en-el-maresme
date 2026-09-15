@@ -1,0 +1,84 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Divisor from '../../components/Divisor.astro';
+import FlorSimbolo from '../../components/FlorSimbolo.astro';
+
+const anuncios = (await getCollection('comunidad', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+<BaseLayout
+  title="Comunidad"
+  description="Un espacio para conocer a otras personas de la tribu: lo que hacen, ofrecen o comparten."
+>
+  <section>
+    <h1 class="seccion-titulo" style="text-align:center;">Comunidad</h1>
+    <p style="text-align:center; color: var(--texto-suave); max-width: 620px; margin: 0 auto;">
+      Esto es una tribu, no una audiencia. Si tienes un curso, un proyecto, una cuenta,
+      un servicio o un recurso que puede ayudar a alguien más por aquí, compártelo abajo.
+    </p>
+  </section>
+
+  <Divisor />
+
+  <section>
+    {anuncios.length === 0 ? (
+      <p style="text-align:center; color: var(--texto-suave);">
+        Todavía no hay anuncios publicados. ¡Sé la primera persona en compartir algo!
+      </p>
+    ) : (
+      <div class="grid-comunidad">
+        {anuncios.map((anuncio) => (
+          <div class="tarjeta tarjeta-comunidad">
+            <FlorSimbolo color="#a8dfc9" />
+            <h3>{anuncio.data.nombre}</h3>
+            <p class="que-hace">{anuncio.data.queHace}</p>
+            <p>{anuncio.data.mensaje}</p>
+            {anuncio.data.enlace && (
+              <a class="boton boton-chico" href={anuncio.data.enlace} target="_blank" rel="noopener noreferrer">
+                Ver más
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    )}
+  </section>
+
+  <Divisor />
+
+  <section class="formulario-comunidad">
+    <h2 class="seccion-titulo" style="text-align:center;">Comparte tu anuncio</h2>
+    <p style="text-align:center; color: var(--texto-suave); max-width: 560px; margin: 0 auto 1.6rem;">
+      Cuéntanos qué haces. Revisamos cada anuncio antes de publicarlo para que la tribu
+      siga siendo un espacio seguro y sin spam.
+    </p>
+    <form
+      name="comunidad"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      action="/comunidad/gracias"
+      class="form-tarjeta"
+    >
+      <input type="hidden" name="form-name" value="comunidad" />
+      <p class="oculto">
+        <label>No llenar este campo: <input name="bot-field" /></label>
+      </p>
+      <label for="nombre">Tu nombre</label>
+      <input id="nombre" name="nombre" type="text" required />
+
+      <label for="que-hace">¿Qué haces u ofreces?</label>
+      <input id="que-hace" name="que-hace" type="text" required />
+
+      <label for="enlace">Enlace (opcional)</label>
+      <input id="enlace" name="enlace" type="url" placeholder="https://" />
+
+      <label for="mensaje">Cuéntanos más</label>
+      <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+      <button class="boton" type="submit">Enviar anuncio</button>
+    </form>
+  </section>
+</BaseLayout>

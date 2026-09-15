@@ -1,0 +1,84 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Divisor from '../components/Divisor.astro';
+import TarjetaPost from '../components/TarjetaPost.astro';
+import FlorSimbolo from '../components/FlorSimbolo.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 6);
+---
+<BaseLayout title="Inicio">
+  <section class="hero-split">
+    <div class="hero-texto">
+      <h1>Una Chilanga <span class="acento">en el Maresme</span></h1>
+      <p>
+        Historias sin filtros desde el Maresme, con acento mexicano.
+      </p>
+      <p style="margin-top: 1.6rem;">
+        <a class="boton" href="/blog">Leer el blog</a>
+      </p>
+    </div>
+    <div class="hero-foto">
+      <img src="/images/cascada.png" alt="Foto de Gaby" />
+      <FlorSimbolo color="#f4b6c2" />
+    </div>
+  </section>
+
+  <Divisor />
+
+  <section class="articulo">
+    <h2 class="seccion-titulo" style="text-align:center;">Un cachito sobre mí</h2>
+    <p>
+      Primero que nada, bienvenida(o) a este espacio. Me llamo Gabriela, tengo 40 años,
+      soy mexicana pero me mudé a Barcelona en el 2016, específicamente a Vilassar de Mar.
+    </p>
+    <p>
+      He creado este espacio para construir comunidad y como sostén, para que a través de mis
+      historias veamos que las situaciones que a veces creemos demasiado complejas, o en las que
+      nos sentimos solas al vivirlas, pasan mucho más a menudo de lo que pensamos.
+    </p>
+    <p>
+      Tengo una historia de vida que me ha obligado, de cierta forma, a conocer la resiliencia
+      a marchas forzadas —sí, esa palabra que está tan de moda—, y a lo largo de este camino la
+      irás descubriendo.
+    </p>
+    <p>
+      Soy madre de dos maravillosos niños, mis mejores maestros, y a veces también necesitamos
+      espacios para hablar, ser escuchados o simplemente leer historias que compartan más
+      personas, para no sentir que enloquecemos en este viaje tan lleno de emociones intensas.
+    </p>
+    <p>
+      En este blog encontrarás categorías diversas: pensamientos sobre historias que me han
+      sucedido, lo importante de tener una red, herramientas para sentirte mejor o cosas que,
+      al menos a mí, me han funcionado, recetas de cocina (que es otra cosa que me encanta),
+      viajes y muchas cosas más por compartir. También encontrarás una sección de comunidad
+      donde puedes escribir un post sobre lo que haces y los servicios que ofreces, para que
+      más personas puedan leerte y creemos entre todos una red de bienestar.
+    </p>
+    <p style="text-align:center;">
+      Gracias por leerme. Si quieres escribirme, puedes hacerlo a
+      <a href="mailto:hola@unachilangaenelmaresme.com">hola@unachilangaenelmaresme.com</a>.
+    </p>
+  </section>
+
+  <Divisor />
+
+  {posts.length > 0 && (
+    <section>
+      <h2 class="seccion-titulo" style="text-align:center;">Últimos posts</h2>
+      <div class="grid-posts">
+        {posts.map((post) => (
+          <TarjetaPost
+            slug={post.id}
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            category={post.data.category}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>
