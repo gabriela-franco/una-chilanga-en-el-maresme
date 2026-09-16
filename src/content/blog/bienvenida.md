@@ -17,6 +17,12 @@ Tengo una historia de vida que me ha obligado, de cierta forma, a conocer la res
 a marchas forzadas —sí, esa palabra que está tan de moda—, y a lo largo de este camino la
 irás descubriendo.
 
+Por eso elegí un diente de león como símbolo de este espacio: es una flor que no elige
+dónde cae, y aun así echa raíz y florece donde el viento la lleve. Sus semillas viajan
+lejos, solas, sin saber muy bien dónde van a aterrizar, y aun con eso se abren paso. Me
+sentí muy identificada con esa imagen cuando pienso en mi propia migración, y en todo lo
+que he tenido que sostener sin tener siempre un mapa de cómo hacerlo.
+
 Soy madre de dos maravillosos niños, mis mejores maestros, y a veces también necesitamos
 espacios para hablar, ser escuchados o simplemente leer historias que compartan más
 personas, para no sentir que enloquecemos en este viaje tan lleno de emociones intensas.
