@@ -28,43 +28,6 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
   <Divisor />
 
-  <section class="articulo">
-    <h2 class="seccion-titulo" style="text-align:center;">Un cachito sobre mí</h2>
-    <p>
-      Primero que nada, bienvenida(o) a este espacio. Me llamo Gabriela, tengo 40 años,
-      soy mexicana pero me mudé a Barcelona en el 2016, específicamente a Vilassar de Mar.
-    </p>
-    <p>
-      He creado este espacio para construir comunidad y como sostén, para que a través de mis
-      historias veamos que las situaciones que a veces creemos demasiado complejas, o en las que
-      nos sentimos solas al vivirlas, pasan mucho más a menudo de lo que pensamos.
-    </p>
-    <p>
-      Tengo una historia de vida que me ha obligado, de cierta forma, a conocer la resiliencia
-      a marchas forzadas —sí, esa palabra que está tan de moda—, y a lo largo de este camino la
-      irás descubriendo.
-    </p>
-    <p>
-      Soy madre de dos maravillosos niños, mis mejores maestros, y a veces también necesitamos
-      espacios para hablar, ser escuchados o simplemente leer historias que compartan más
-      personas, para no sentir que enloquecemos en este viaje tan lleno de emociones intensas.
-    </p>
-    <p>
-      En este blog encontrarás categorías diversas: pensamientos sobre historias que me han
-      sucedido, lo importante de tener una red, herramientas para sentirte mejor o cosas que,
-      al menos a mí, me han funcionado, recetas de cocina (que es otra cosa que me encanta),
-      viajes y muchas cosas más por compartir. También encontrarás una sección de comunidad
-      donde puedes escribir un post sobre lo que haces y los servicios que ofreces, para que
-      más personas puedan leerte y creemos entre todos una red de bienestar.
-    </p>
-    <p style="text-align:center;">
-      Gracias por leerme. Si quieres escribirme, puedes hacerlo a
-      <a href="mailto:hola@unachilangaenelmaresme.com">hola@unachilangaenelmaresme.com</a>.
-    </p>
-  </section>
-
-  <Divisor />
-
   {posts.length > 0 && (
     <section>
       <h2 class="seccion-titulo" style="text-align:center;">Últimos posts</h2>

@@ -31,5 +31,12 @@ const { title, description = "Blog personal sobre duelo, migración, maternidad,
       <slot />
     </main>
     <Footer />
+    {import.meta.env.PROD && (
+      <script
+        data-goatcounter="https://chilangamaresme.goatcounter.com/count"
+        async
+        src="//gc.zgo.at/count.js"
+      ></script>
+    )}
   </body>
 </html>

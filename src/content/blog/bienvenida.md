@@ -1,26 +1,31 @@
 ---
-title: "Bienvenida a mi jardín"
-description: "Por qué decidí abrir este espacio y qué vas a encontrar aquí."
-pubDate: 2026-09-14
+title: "Un cachito sobre mí"
+description: "Bienvenida a este espacio: quién soy y qué vas a encontrar en este blog."
+pubDate: 2026-09-16
 category: "un-rato-conmigo"
 tags: ["bienvenida", "sobre-mi"]
-draft: true
+draft: false
 ---
+Primero que nada, bienvenida(o) a este espacio. Me llamo Gabriela, tengo 40 años,
+soy mexicana pero me mudé a Barcelona en el 2016, específicamente a Vilassar de Mar.
 
-Hola, soy Gaby. Tengo 40 años, soy mexicana, chilanga de nacimiento, y desde hace unos años vivo en el Maresme, muy cerca de Barcelona.
+He creado este espacio para construir comunidad y como sostén, para que a través de mis
+historias veamos que las situaciones que a veces creemos demasiado complejas, o en las que
+nos sentimos solas al vivirlas, pasan mucho más a menudo de lo que pensamos.
 
-Abro este blog porque necesitaba un lugar propio. Un lugar donde hablar sin filtros de las cosas que me han marcado: la pérdida de mi madre a los 25 años, la de mi padre hace apenas tres, la decisión de dejar mi país para empezar de nuevo en otro continente, la maternidad de un hijo con dislexia y altas capacidades, y mis propios episodios de ansiedad.
+Tengo una historia de vida que me ha obligado, de cierta forma, a conocer la resiliencia
+a marchas forzadas —sí, esa palabra que está tan de moda—, y a lo largo de este camino la
+irás descubriendo.
 
-Aquí vas a encontrar:
+Soy madre de dos maravillosos niños, mis mejores maestros, y a veces también necesitamos
+espacios para hablar, ser escuchados o simplemente leer historias que compartan más
+personas, para no sentir que enloquecemos en este viaje tan lleno de emociones intensas.
 
-- **Duelo**: cómo he aprendido (y sigo aprendiendo) a cargar con la ausencia de mis padres.
-- **Migración**: lo que nadie te cuenta de empezar de cero en otro país.
-- **Maternidad**: criar a un hijo con dislexia, altas capacidades y otras neurodivergencias, entre diagnósticos, escuela y aciertos.
-- **Salud emocional**: ansiedad, técnicas, recaídas y lo que de verdad me ha ayudado.
-- **Viajes**: los que he hecho para reencontrarme.
-- **Cocinando ando...**: recetas y cosas ricas que me encanta compartir.
-- **Un rato conmigo**: los posts sin estructura, solo para soltar.
+En este blog encontrarás categorías diversas: pensamientos, historias propias, tecnología, herramientas para sentirte mejor o cosas que,
+al menos a mí, me han funcionado, recetas de cocina (que es otra cosa que me encanta),
+viajes y muchas cosas más por compartir. También encontrarás una sección de comunidad
+donde puedes escribir un post sobre lo que haces y los servicios que ofreces, para que
+más personas puedan leerte y creemos entre todos una red de bienestar.
 
-No tengo todas las respuestas. Pero si algo de lo que escribo te hace sentir menos sola, ya valió la pena escribirlo.
-
-Gracias por estar aquí.
+Gracias por leerme. Si quieres escribirme, puedes hacerlo a
+[hola@unachilangaenelmaresme.com](mailto:hola@unachilangaenelmaresme.com).
