@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FlorSimbolo from '../../components/FlorSimbolo.astro';
+---
+<BaseLayout title="Te has dado de baja" description="Ya no recibirás avisos de nuevas entradas.">
+  <section style="text-align:center; padding: 3rem 0;">
+    <div class="hero-decor">
+      <FlorSimbolo color="#f4b6c2" />
+    </div>
+    <h1>Te has dado de baja</h1>
+    <p style="color: var(--texto-suave); max-width: 480px; margin: 0 auto 1.6rem;">
+      Ya no recibirás más avisos por correo. Si cambias de opinión, puedes volver a suscribirte
+      cuando quieras desde cualquier página del blog.
+    </p>
+    <a class="boton" href="/">Volver al inicio</a>
+  </section>
+</BaseLayout>

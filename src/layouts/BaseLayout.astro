@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Newsletter from '../components/Newsletter.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -29,6 +30,7 @@ const { title, description = "Blog personal sobre duelo, migración, maternidad,
     <Header />
     <main class="contenedor">
       <slot />
+      <Newsletter />
     </main>
     <Footer />
     {import.meta.env.PROD && (

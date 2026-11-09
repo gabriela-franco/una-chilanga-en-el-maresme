@@ -1,0 +1,69 @@
+---
+import FlorSimbolo from './FlorSimbolo.astro';
+---
+<section class="newsletter" aria-labelledby="newsletter-titulo">
+  <div class="newsletter-tarjeta">
+    <div class="newsletter-flor"><FlorSimbolo color="#cbb8e8" /></div>
+    <h2 id="newsletter-titulo">¿Te aviso cuando publique algo nuevo?</h2>
+    <p class="newsletter-texto">
+      Deja tu correo y te escribiré cada vez que haya una entrada nueva en el blog. Nada más, sin spam.
+    </p>
+    <form class="newsletter-form" novalidate>
+      <p class="oculto" aria-hidden="true">
+        <label>No llenar este campo: <input name="website" tabindex="-1" autocomplete="off" /></label>
+      </p>
+      <label for="newsletter-email" class="sr-only">Tu correo electrónico</label>
+      <input
+        id="newsletter-email"
+        name="email"
+        type="email"
+        placeholder="tu@correo.com"
+        autocomplete="email"
+        maxlength="254"
+        required
+      />
+      <button class="boton" type="submit">Suscribirme</button>
+    </form>
+    <p class="newsletter-estado" role="status" hidden></p>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".newsletter").forEach((seccion) => {
+    const form = seccion.querySelector<HTMLFormElement>(".newsletter-form")!;
+    const estado = seccion.querySelector<HTMLParagraphElement>(".newsletter-estado")!;
+    const boton = form.querySelector<HTMLButtonElement>("button")!;
+
+    const mostrar = (msg: string, error = false) => {
+      estado.textContent = msg;
+      estado.classList.toggle("es-error", error);
+      estado.hidden = false;
+    };
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const email = String(fd.get("email") ?? "").trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        mostrar("Escribe un correo electrónico válido.", true);
+        return;
+      }
+      boton.disabled = true;
+      try {
+        const res = await fetch("/api/suscripcion", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, website: fd.get("website") }),
+        });
+        const datos = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(datos.error ?? "No se pudo completar la suscripción.");
+        mostrar(datos.mensaje ?? "¡Gracias! Revisa tu correo para confirmar.");
+        form.reset();
+      } catch (err) {
+        mostrar(err instanceof Error ? err.message : "No se pudo completar la suscripción.", true);
+      } finally {
+        boton.disabled = false;
+      }
+    });
+  });
+</script>
