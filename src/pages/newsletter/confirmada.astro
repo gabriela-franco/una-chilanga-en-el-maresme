@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FlorSimbolo from '../../components/FlorSimbolo.astro';
+---
+<BaseLayout title="¡Suscripción confirmada!" description="Tu suscripción a la newsletter está confirmada.">
+  <section style="text-align:center; padding: 3rem 0;">
+    <div class="hero-decor">
+      <FlorSimbolo color="#a8dfc9" />
+    </div>
+    <h1>¡Ya estás dentro!</h1>
+    <p style="color: var(--texto-suave); max-width: 480px; margin: 0 auto 1.6rem;">
+      Tu suscripción está confirmada. Te escribiré cada vez que publique una entrada nueva en el blog.
+      Gracias por acompañarme 💜
+    </p>
+    <a class="boton" href="/blog">Ir al blog</a>
+  </section>
+</BaseLayout>
