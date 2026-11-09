@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Comentarios from '../../components/Comentarios.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -34,4 +35,5 @@ const categorias: Record<string, string> = {
     </p>
     <Content />
   </article>
+  <Comentarios slug={post.id} />
 </BaseLayout>

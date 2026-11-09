@@ -1,0 +1,118 @@
+---
+interface Props {
+  slug: string;
+}
+const { slug } = Astro.props;
+---
+<section class="comentarios" data-slug={slug} aria-labelledby="comentarios-titulo">
+  <h2 id="comentarios-titulo" class="seccion-titulo">Comentarios</h2>
+  <p class="comentarios-intro">
+    No necesitas cuenta para comentar. Deja tu nombre y lo que quieras compartir.
+  </p>
+
+  <ul class="comentarios-lista" aria-live="polite">
+    <li class="comentarios-estado">Cargando comentarios…</li>
+  </ul>
+
+  <form class="form-tarjeta comentarios-form" novalidate>
+    <p class="oculto" aria-hidden="true">
+      <label>No llenar este campo: <input name="website" tabindex="-1" autocomplete="off" /></label>
+    </p>
+    <label for="comentario-nombre">Tu nombre</label>
+    <input id="comentario-nombre" name="nombre" type="text" maxlength="60" required />
+
+    <label for="comentario-mensaje">Tu comentario</label>
+    <textarea id="comentario-mensaje" name="mensaje" rows="4" maxlength="2000" required></textarea>
+
+    <p class="comentarios-error" role="alert" hidden></p>
+    <button class="boton" type="submit">Publicar comentario</button>
+  </form>
+</section>
+
+<script>
+  type Comentario = { id: number; nombre: string; mensaje: string; createdAt: string };
+
+  const seccion = document.querySelector<HTMLElement>(".comentarios");
+  if (seccion) {
+    const slug = seccion.dataset.slug!;
+    const lista = seccion.querySelector<HTMLUListElement>(".comentarios-lista")!;
+    const form = seccion.querySelector<HTMLFormElement>(".comentarios-form")!;
+    const error = seccion.querySelector<HTMLParagraphElement>(".comentarios-error")!;
+    const boton = form.querySelector<HTMLButtonElement>("button")!;
+
+    const fecha = (iso: string) =>
+      new Date(iso).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
+
+    const crearItem = (c: Comentario) => {
+      const li = document.createElement("li");
+      li.className = "comentario";
+      const cabecera = document.createElement("p");
+      cabecera.className = "comentario-cabecera";
+      const nombre = document.createElement("strong");
+      nombre.textContent = c.nombre;
+      const cuando = document.createElement("span");
+      cuando.textContent = fecha(c.createdAt);
+      cabecera.append(nombre, cuando);
+      const texto = document.createElement("p");
+      texto.className = "comentario-texto";
+      texto.textContent = c.mensaje;
+      li.append(cabecera, texto);
+      return li;
+    };
+
+    const mostrarEstado = (msg: string) => {
+      lista.replaceChildren();
+      const li = document.createElement("li");
+      li.className = "comentarios-estado";
+      li.textContent = msg;
+      lista.append(li);
+    };
+
+    const cargar = async () => {
+      try {
+        const res = await fetch(`/api/comentarios?slug=${encodeURIComponent(slug)}`);
+        if (!res.ok) throw new Error();
+        const datos: Comentario[] = await res.json();
+        if (datos.length === 0) mostrarEstado("Todavía no hay comentarios. ¡Sé la primera persona en escribir!");
+        else lista.replaceChildren(...datos.map(crearItem));
+      } catch {
+        mostrarEstado("No se pudieron cargar los comentarios.");
+      }
+    };
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      error.hidden = true;
+      const fd = new FormData(form);
+      const nombre = String(fd.get("nombre") ?? "").trim();
+      const mensaje = String(fd.get("mensaje") ?? "").trim();
+      if (!nombre || !mensaje) {
+        error.textContent = "Escribe tu nombre y tu comentario.";
+        error.hidden = false;
+        return;
+      }
+      boton.disabled = true;
+      try {
+        const res = await fetch("/api/comentarios", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ slug, nombre, mensaje, website: fd.get("website") }),
+        });
+        const datos = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(datos.error ?? "No se pudo publicar el comentario.");
+        if (datos.id) {
+          if (lista.querySelector(".comentarios-estado")) lista.replaceChildren();
+          lista.append(crearItem(datos));
+        }
+        form.reset();
+      } catch (err) {
+        error.textContent = err instanceof Error ? err.message : "No se pudo publicar el comentario.";
+        error.hidden = false;
+      } finally {
+        boton.disabled = false;
+      }
+    });
+
+    cargar();
+  }
+</script>

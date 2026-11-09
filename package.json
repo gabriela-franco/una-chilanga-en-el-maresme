@@ -12,9 +12,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.3.2"
+    "@netlify/database": "^2.0.3",
+    "@netlify/functions": "^6.1.1",
+    "astro": "^7.3.2",
+    "drizzle-orm": "^1.0.0-beta.22"
   },
   "allowScripts": {
     "esbuild": true
+  },
+  "devDependencies": {
+    "drizzle-kit": "^1.0.0-beta.22"
   }
 }
